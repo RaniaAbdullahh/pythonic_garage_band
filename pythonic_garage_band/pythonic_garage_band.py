@@ -4,8 +4,9 @@ from abc import ABC, abstractmethod
 class Band():
 
     bands = []
-    def __init__(self,name):
+    def __init__(self,name,members):
         self.name=name
+        self.members=members
         Band.bands.append(self)
 
     def to_list(cls):
@@ -16,6 +17,12 @@ class Band():
     
     def __repr__(self):
         return f" '{self.name}' "
+
+    def play_solos(self):
+        result=''
+        for i in self.members:
+            result+=f"this is {i},{i.play_solo()}\n"
+        return result    
 
 
 class Musician():
@@ -61,7 +68,7 @@ class Guitarist(Musician) :
 
     def __str__(self) :
 
-        return f' class   <{self.name} >'
+        return f' {self.name}'
 
     
     def __repr__(self) :
@@ -87,7 +94,7 @@ class Bassist(Musician):
 
     def __str__(self) :
 
-        return f' class   <{self.name} >'
+        return f'{self.name}'
 
     
     def __repr__(self) :
@@ -111,7 +118,7 @@ class Drummer(Musician):
          super().__init__(name)
 
     def __str__(self) :
-        return f' class   <{self.name} >'
+        return f'{self.name} '
 
     def __repr__(self) :
         return f'{self.name} '
@@ -126,11 +133,11 @@ class Drummer(Musician):
 
 if __name__ == "__main__":
 
-    rania = Bassist('rania')
-    print(rania)
-    print(rania.get_instrument())
-    print(rania.play_solo())
-    meatal=Band('metal')
-    rab=Band('rab')
-    print(meatal.to_list())
+    jhon=Drummer('jhon')
+    rania=Guitarist('rania')
+    adam=Bassist('adam')
+    
+    garag=Band('garag',[jhon,rania,adam])
+
+    print(garag.play_solos())
     
